@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "question": "what is js?",
+    "options": [
+      "JavaScript",
+      "PHP",
+      "Nodejs"
+    ]
+  }
+]

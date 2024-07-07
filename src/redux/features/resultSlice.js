@@ -31,6 +31,6 @@ export const {
   pushResultAction,
   resetResultAction,
   updateResultAction,
-} = resultReducer.actions;
+} = resultSlice.actions;
 
 export default resultSlice.reducer;
