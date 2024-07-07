@@ -7,5 +7,32 @@
       "PHP",
       "Nodejs"
     ]
+  },
+  {
+    "id": 2,
+    "question": "what is callback?",
+    "options": [
+      "Call a function",
+      "call a man",
+      "call your self"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "JSX?",
+    "options": [
+      "Javascript",
+      "React",
+      "angular"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Nodejs?",
+    "options": [
+      "Frame work",
+      "Library",
+      "Programme"
+    ]
   }
 ]

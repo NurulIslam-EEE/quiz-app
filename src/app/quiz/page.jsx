@@ -1,6 +1,6 @@
 "use client";
 import Question from "@/components/Question";
-import { MoveNextQuestion } from "@/hooks/fetchQuestion";
+import { MoveNextQuestion, MovePrevQuestion } from "@/hooks/fetchQuestion";
 import { PushAnswer } from "@/hooks/setResult";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -44,6 +44,7 @@ export default function Quiz() {
   function onChecked(check) {
     setChecked(check);
   }
+  console.log("ansss", result);
 
   /** finished exam after the last question */
   if (result.length && result.length >= queue.length) {

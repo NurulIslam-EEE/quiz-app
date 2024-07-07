@@ -3,6 +3,7 @@ import * as Action from "../redux/features/resultSlice";
 
 export const PushAnswer = (result) => async (dispatch) => {
   try {
+    console.log("", result);
     await dispatch(Action.pushResultAction(result));
   } catch (error) {
     console.log(error);

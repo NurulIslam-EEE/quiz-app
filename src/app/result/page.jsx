@@ -41,7 +41,7 @@ function Result() {
       </div>
 
       <div className="start">
-        <Link className="btn" href={"/"}>
+        <Link className="btn" href="/quiz">
           Restart
         </Link>
       </div>
