@@ -1,9 +1,46 @@
-import ResultTable from "@/components/ResultTable";
-import Link from "next/link";
+"use client";
+import React, { useEffect } from "react";
 import "../../styles/result.css";
 
-function Result() {
-  const flag = true;
+import { useDispatch, useSelector } from "react-redux";
+
+import ResultTable from "@/components/ResultTable";
+import Link from "next/link";
+import {
+  attempts_Number,
+  earnPoints_Number,
+  flagResult,
+} from "@/helper/helper";
+import { usePublishResult } from "@/hooks/setResult";
+
+/** import actions  */
+
+export default function Result() {
+  const dispatch = useDispatch();
+  const {
+    questions: { queue, answers },
+    result: { result, userId },
+  } = useSelector((state) => state);
+
+  const totalPoints = queue.length * 10;
+  const attempts = attempts_Number(result);
+  const earnPoints = earnPoints_Number(result, answers, 10);
+  const flag = flagResult(totalPoints, earnPoints);
+
+  /** store user result */
+  usePublishResult({
+    result,
+    username: userId,
+    attempts,
+    points: earnPoints,
+    achived: flag ? "Passed" : "Failed",
+  });
+
+  function onRestart() {
+    dispatch(resetAllAction());
+    dispatch(resetResultAction());
+  }
+
   return (
     <div className="container">
       <h1 className="title text-light">Quiz Application</h1>
@@ -11,23 +48,23 @@ function Result() {
       <div className="result flex-center">
         <div className="flex">
           <span>Username</span>
-          <span className="bold">0</span>
+          <span className="bold">{userId || ""}</span>
         </div>
         <div className="flex">
           <span>Total Quiz Points : </span>
-          <span className="bold">0</span>
+          <span className="bold">{totalPoints || 0}</span>
         </div>
         <div className="flex">
           <span>Total Questions : </span>
-          <span className="bold">0</span>
+          <span className="bold">{queue.length || 0}</span>
         </div>
         <div className="flex">
           <span>Total Attempts : </span>
-          <span className="bold">0</span>
+          <span className="bold">{attempts || 0}</span>
         </div>
         <div className="flex">
           <span>Total Earn Points : </span>
-          <span className="bold">0</span>
+          <span className="bold">{earnPoints || 0}</span>
         </div>
         <div className="flex">
           <span>Quiz Result</span>
@@ -41,7 +78,7 @@ function Result() {
       </div>
 
       <div className="start">
-        <Link className="btn" href="/quiz">
+        <Link className="btn" href="/quiz" onClick={onRestart}>
           Restart
         </Link>
       </div>
@@ -53,5 +90,3 @@ function Result() {
     </div>
   );
 }
-
-export default Result;
